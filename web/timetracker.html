@@ -5,19 +5,65 @@
     <meta charset="utf-8">
     <title>TimeTracker</title>
     <link rel="stylesheet" href="timetracker.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css">
   </head>
   <body>
-    <h1>TimeTracker</h1>
+    <h1>Pomodoros Counter</h1>
     
-    <p>Hello world from Dart!</p>
+    <div>
     
-    <div id="sample_container_id">
-      <p id="sample_text_id"></p>
+      <form class="form-inline" action="">
+        My pomodoro unit <input id="settingUnitLength" type="number" value="25" placeholder="00"> min
+        Short break <input id="settingShortBreak" type="number" value="5" placeholder="00"> min
+        Long break <i title="After 4 pomodoros" class="icon-help"></i> <input id="settingLongBreak" value="25" type="number" placeholder="00"> min
+     </form>
+      
+     <form class="form-inline" action="">
+      
+      <input id="taskName" type="text" placeholder="Task name">
+      
+      <select id="taskLevel" class="span2">
+         <option value="1"> Easy </option>
+         <option value="2"> Medium </option>
+         <option value="3"> Hard </option>         
+      </select>
+    
+       <i class="icon-time"></i> <input id="taskEstimatedTime" type="number" placeholder="Your estimate (h)">
+       
+       <button id="startPomodoro" class="btn btn-danger" type="button">Pomodoro!</button>
+       
+        <button id="stopPomodoro" class="btn btn-warning" type="button">Stop pomodoro</button>
+       
+       <button id="restartPomodoro" class="btn btn-warning" type="button">Restart pomodoro</button>
+       
+       <button id="endTask" class="btn btn-success" type="button">End Task</button>
+      
+      </form>
+    </div>   
+    
+    <div id="results hide">
+    
+    <div id="counterBack"> 
+      <span id="hours">xx</span> : <span id="minutes">xx</span> 
     </div>
-
+    
+    <div>
+      Estimated pomodoros: <div id="estimatedPomodoros"></div>
+    </div>
+    <div>
+      Counted pomodoros: <div id="countedPomodoros"></div>
+    </div>
+    
+    
+    
+    </div>  
+    
+    
     <script type="application/dart" src="timetracker.dart"></script>
-    <script src="packages/browser/dart.js"></script>
-    <script type="text/javascript" src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script type="application/dart" src="mike.dart"></script>
+    
+    <script src="packages/browser/dart.js"></script>  
+   <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+   <script type="text/javascript" src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
   </body>
 </html>
