@@ -1,18 +1,6 @@
 import 'dart:html';
 
 void main() {
-  querySelector("#sample_text_id")
-    ..text = "Click me!"
-    ..onClick.listen(reverseText);
-}
-
-void reverseText(MouseEvent event) {
-  var text = querySelector("#sample_text_id").text;
-  var buffer = new StringBuffer();
-  for (int i = text.length - 1; i >= 0; i--) {
-    buffer.write(text[i]);
-  }
-  querySelector("#sample_text_id").text = buffer.toString();
 }
 
 class Settings
@@ -33,5 +21,46 @@ class Settings
   {
     int pause = 25; //TODO settings from user
     return pause;
+  }
+}
+
+class Calculation
+{
+  int hourEstimate;
+
+  num hourCalculation;
+
+  Settings settings;
+
+  Calculation(this.settings, this.hourEstimate);
+
+  num calculate()
+  {
+    String next = 'pomodoro';
+    int work = 0;
+    int shortPause = 0;
+    int longPause = 0;
+    int remain = hourEstimate * 60;
+
+    while (remain > 0) {
+      switch (next) {
+        case 'pomodoro':
+          work++;
+          remain -= settings.getPomodoroWork();
+          next = (work % 4 == 0) ? 'longPause' : 'shortPause';
+          break;
+        case 'shortPause':
+          shortPause++;
+          next = 'pomodoro';
+          break;
+        case 'longPause':
+          longPause++;
+          next = 'pomodoro';
+          break;
+      }
+    }
+
+    int minutes = work * settings.getPomodoroWork() + shortPause * settings.getPomodoroShortPause() + longPause * settings.getPomodoroLongPause();
+    return hourCalculation = minutes / 60;
   }
 }
