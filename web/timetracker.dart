@@ -1,67 +1,61 @@
 import 'dart:html';
 
 void main() {
+  Settings sets = new Settings(25, 5, 25);
+  Calculation calc = new Calculation(sets, 12);
+  print(calc.calculate());
 }
 
 class Settings
 {
-  int getPomodoroWork()
-  {
-    int work = 25; //TODO settings from user
-    return work;
-  }
+  int work;
+  int shortBreak;
+  int longBreak;
 
-  int getPomodoroShortPause()
-  {
-    int pause = 5; //TODO settings from user
-    return pause;
-  }
-
-  int getPomodoroLongPause()
-  {
-    int pause = 25; //TODO settings from user
-    return pause;
-  }
-}
+  Settings(this.work, this.shortBreak, this.longBreak);}
 
 class Calculation
 {
   int hourEstimate;
-
-  num hourCalculation;
-
+  int hourCalculation;
+  List steps = [];
   Settings settings;
 
   Calculation(this.settings, this.hourEstimate);
 
-  num calculate()
+  List calculate()
   {
-    String next = 'pomodoro';
+    String nextStep = 'work';
     int work = 0;
-    int shortPause = 0;
-    int longPause = 0;
+    int shortBreak = 0;
+    int longBreak = 0;
     int remain = hourEstimate * 60;
 
     while (remain > 0) {
-      switch (next) {
-        case 'pomodoro':
+      switch (nextStep) {
+        case 'work':
+          steps.add('work');
           work++;
-          remain -= settings.getPomodoroWork();
-          next = (work % 4 == 0) ? 'longPause' : 'shortPause';
+          remain -= settings.work;
+          nextStep = (work % 4 == 0) ? 'longBreak' : 'shortBreak';
           break;
-        case 'shortPause':
-          shortPause++;
-          next = 'pomodoro';
+        case 'shortBreak':
+          steps.add('shortBreak');
+          shortBreak++;
+          nextStep = 'work';
           break;
-        case 'longPause':
-          longPause++;
-          next = 'pomodoro';
+        case 'longBreak':
+          steps.add('longBreak');
+          longBreak++;
+          nextStep = 'work';
           break;
       }
     }
 
-    int minutes = work * settings.getPomodoroWork() + shortPause * settings.getPomodoroShortPause() + longPause * settings.getPomodoroLongPause();
-    return hourCalculation = minutes / 60;
+    int minutes = work * settings.work + shortBreak * settings.shortBreak + longBreak * settings.longBreak;
+    hourCalculation = (minutes / 60).round();
+
+    return steps;
   }
 }
 
