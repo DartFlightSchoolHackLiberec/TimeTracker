@@ -14,3 +14,24 @@ void reverseText(MouseEvent event) {
   }
   querySelector("#sample_text_id").text = buffer.toString();
 }
+
+class Settings
+{
+  int getPomodoroWork()
+  {
+    int work = 25; //TODO settings from user
+    return work;
+  }
+
+  int getPomodoroShortPause()
+  {
+    int pause = 5; //TODO settings from user
+    return pause;
+  }
+
+  int getPomodoroLongPause()
+  {
+    int pause = 25; //TODO settings from user
+    return pause;
+  }
+}
