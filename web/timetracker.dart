@@ -56,3 +56,15 @@ class Calculation
   }
 }
 
+class Task
+{
+  String name;
+  int level;
+  int hourEstimate;
+  int hourCalculate;
+
+  Task(this.name, this.level, this.hourEstimate);
+
+
+}
+
