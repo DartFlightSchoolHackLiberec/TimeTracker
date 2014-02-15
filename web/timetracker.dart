@@ -64,3 +64,4 @@ class Calculation
     return hourCalculation = minutes / 60;
   }
 }
+
