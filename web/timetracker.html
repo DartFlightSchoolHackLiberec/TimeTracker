@@ -6,13 +6,17 @@
     <title>TimeTracker</title>
     <link rel="stylesheet" href="timetracker.css">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css">
+    
+     <script src="packages/browser/dart.js"></script>  
   </head>
   <body>
     <h1>Pomodoros Counter</h1>
     
+    <a id="run" href="#">Run</a>
+    
     <div>
     
-      <form class="form-inline" action="">
+      <form id="settings" class="form-inline" action="">
         My pomodoro unit <input id="settingUnitLength" type="number" value="25" placeholder="00"> min
         Short break <input id="settingShortBreak" type="number" value="5" placeholder="00"> min
         Long break <i title="After 4 pomodoros" class="icon-help"></i> <input id="settingLongBreak" value="25" type="number" placeholder="00"> min
@@ -36,6 +40,7 @@
        
        <button id="restartPomodoro" class="btn btn-warning" type="button">Restart pomodoro</button>
        
+       <br />
        <button id="endTask" class="btn btn-success" type="button">End Task</button>
       
       </form>
@@ -44,7 +49,7 @@
     <div id="results hide">
     
     <div id="counterBack"> 
-      <span id="hours">xx</span> : <span id="minutes">xx</span> 
+      <span id="minutes">xx</span> : <span id="seconds">xx</span> 
     </div>
     
     <div>
@@ -60,9 +65,8 @@
     
     
     <script type="application/dart" src="timetracker.dart"></script>
-    <script type="application/dart" src="mike.dart"></script>
+       
     
-    <script src="packages/browser/dart.js"></script>  
    <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
    <script type="text/javascript" src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
   </body>
